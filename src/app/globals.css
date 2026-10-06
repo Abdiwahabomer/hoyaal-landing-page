@@ -1,1 +1,45 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand blue, anchored on the logo color #3198ff */
+  --color-brand-50: #eef6ff;
+  --color-brand-100: #dbecff;
+  --color-brand-200: #bfdcff;
+  --color-brand-300: #93c6ff;
+  --color-brand-400: #5eaaff;
+  --color-brand-500: #3198ff;
+  --color-brand-600: #1b7cf2;
+  --color-brand-700: #1564d8;
+  --color-brand-800: #1851ad;
+  --color-brand-900: #1a4688;
+
+  /* Green accent used for checks and the contact CTA */
+  --color-success-50: #ecfdf3;
+  --color-success-100: #d1fadf;
+  --color-success-500: #17b26a;
+  --color-success-600: #079455;
+
+  --color-ink: #0b1a30;
+  --color-muted: #55657d;
+  --color-surface: #f3f7fc;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+}
