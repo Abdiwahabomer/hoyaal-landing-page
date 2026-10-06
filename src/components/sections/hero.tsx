@@ -1,9 +1,5 @@
 import Image from 'next/image'
-import {
-  ArrowRightIcon,
-  PlayCircleIcon,
-  UsersIcon,
-} from '@/components/icons'
+import { ArrowRightIcon, PlayCircleIcon, UsersIcon } from '@/components/icons'
 import { AppHomeScreen } from '@/components/mockups/app-home-screen'
 import { AppListingScreen } from '@/components/mockups/app-listing-screen'
 import { PhoneFrame } from '@/components/mockups/phone-frame'
@@ -32,7 +28,8 @@ export function Hero({ t }: HeroProps) {
       <Container className='relative grid items-center gap-12 py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:py-20'>
         <div>
           <h1 className='mt-6 animate-fade-up text-5xl font-extrabold tracking-tight text-balance text-ink sm:text-6xl xl:text-[4rem]'>
-            {t.title.find}. <span className='text-brand-600'>{t.title.book}</span>.{' '}
+            {t.title.find}.{' '}
+            <span className='text-brand-600'>{t.title.book}</span>.{' '}
             {t.title.stay}.
           </h1>
 
@@ -41,11 +38,15 @@ export function Hero({ t }: HeroProps) {
           </p>
 
           <div className='mt-9 flex animate-fade-up flex-wrap gap-4 [animation-delay:240ms]'>
-            <ButtonLink href='#download'>
+            <ButtonLink href='#download' className={'w-full md:w-fit'}>
               {t.primaryCta}
               <ArrowRightIcon className='size-4 transition-transform group-hover:translate-x-1' />
             </ButtonLink>
-            <ButtonLink href={siteConfig.demoUrl} variant='secondary'>
+            <ButtonLink
+              href={siteConfig.demoUrl}
+              variant='secondary'
+              className={'w-full md:w-fit'}
+            >
               <PlayCircleIcon className='size-5 text-ink transition-transform group-hover:scale-110' />
               {t.secondaryCta}
             </ButtonLink>
@@ -116,7 +117,9 @@ function HeroVisual({
             <UsersIcon className='size-4.5' />
           </span>
           <span className='leading-tight'>
-            <span className='block text-[11px] text-slate-500'>{trustedBy}</span>
+            <span className='block text-[11px] text-slate-500'>
+              {trustedBy}
+            </span>
             <span className='block text-sm font-semibold text-ink'>
               {travelers}
             </span>
