@@ -7,7 +7,10 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
 import { navLinks } from "@/content/site";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries/en";
 import { cn } from "@/lib/cn";
+import { LocaleSwitcher } from "./locale-switcher";
 
 /** Tracks which nav section is currently in view. */
 function useActiveSection(ids: string[]) {
@@ -35,7 +38,13 @@ function useActiveSection(ids: string[]) {
 
 const sectionIds = navLinks.map((link) => link.id);
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  locale: Locale;
+  nav: Dictionary["nav"];
+  t: Dictionary["header"];
+};
+
+export function SiteHeader({ locale, nav, t }: SiteHeaderProps) {
   const active = useActiveSection(sectionIds);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -51,14 +60,14 @@ export function SiteHeader() {
     <header
       className={cn(
         // Always frosted so content never shows through; the divider appears once scrolled.
-        "sticky top-0 z-50 bg-white/80 backdrop-blur-lg transition-shadow",
+        "sticky top-0 z-50 animate-fade-in bg-white/80 backdrop-blur-lg transition-shadow",
         (scrolled || menuOpen) && "shadow-[0_1px_0_rgba(15,23,42,0.08)]",
       )}
     >
       <Container className="flex h-18 items-center justify-between gap-6">
         <Logo preload />
 
-        <nav aria-label="Main" className="hidden md:block">
+        <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-9">
             {navLinks.map((link) => (
               <li key={link.id}>
@@ -66,32 +75,35 @@ export function SiteHeader() {
                   href={link.href}
                   aria-current={active === link.id ? "true" : undefined}
                   className={cn(
-                    "relative py-2 text-sm font-medium transition-colors",
+                    "relative py-2 text-sm font-medium whitespace-nowrap transition-colors",
+                    // Underline grows from the left on hover and for the active section.
+                    "after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-brand-600 after:transition-transform after:duration-300 hover:after:scale-x-100",
                     active === link.id
-                      ? "text-brand-600 after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-brand-600"
+                      ? "text-brand-600 after:scale-x-100"
                       : "text-ink/80 hover:text-ink",
                   )}
                 >
-                  {link.label}
+                  {nav[link.id]}
                 </Link>
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <LocaleSwitcher locale={locale} label={t.language} />
           <div className="hidden sm:block">
             <ButtonLink href="#download" size="sm">
-              Get Started
-              <ArrowRightIcon className="size-4" />
+              {t.cta}
+              <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" />
             </ButtonLink>
           </div>
           <button
             type="button"
-            className="grid size-10 place-items-center rounded-lg text-ink hover:bg-slate-100 md:hidden"
+            className="grid size-10 place-items-center rounded-lg text-ink transition-colors hover:bg-slate-100 lg:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? t.closeMenu : t.openMenu}
             onClick={() => setMenuOpen((open) => !open)}
           >
             {menuOpen ? <CloseIcon className="size-5" /> : <MenuIcon className="size-5" />}
@@ -100,7 +112,11 @@ export function SiteHeader() {
       </Container>
 
       {menuOpen && (
-        <nav id="mobile-menu" aria-label="Mobile" className="border-t border-slate-100 md:hidden">
+        <nav
+          id="mobile-menu"
+          aria-label="Mobile"
+          className="animate-fade-in border-t border-slate-100 lg:hidden"
+        >
           <Container className="flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
               <Link
@@ -108,15 +124,15 @@ export function SiteHeader() {
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className={cn(
-                  "rounded-lg px-3 py-2.5 text-sm font-medium",
+                  "rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   active === link.id ? "bg-brand-50 text-brand-700" : "text-ink hover:bg-slate-50",
                 )}
               >
-                {link.label}
+                {nav[link.id]}
               </Link>
             ))}
             <ButtonLink href="#download" onClick={() => setMenuOpen(false)} className="mt-2">
-              Get Started
+              {t.cta}
               <ArrowRightIcon className="size-4" />
             </ButtonLink>
           </Container>

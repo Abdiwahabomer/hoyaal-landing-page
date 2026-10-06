@@ -1,12 +1,14 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 
+type DashboardPreviewProps = { alt: string; className?: string };
+
 /** Screenshot of the Hoyaal hotel-admin dashboard, framed as a browser window. */
-export function DashboardPreview({ className }: { className?: string }) {
+export function DashboardPreview({ alt, className }: DashboardPreviewProps) {
   return (
     <figure
       className={cn(
-        "overflow-hidden rounded-2xl bg-white shadow-[0_30px_70px_-30px_rgba(23,65,140,0.35)] ring-1 ring-slate-200/70",
+        "overflow-hidden rounded-2xl bg-white shadow-[0_30px_70px_-30px_rgba(23,65,140,0.35)] ring-1 ring-slate-200/70 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_40px_80px_-30px_rgba(23,65,140,0.45)]",
         className,
       )}
     >
@@ -17,7 +19,7 @@ export function DashboardPreview({ className }: { className?: string }) {
       </div>
       <Image
         src="/images/dashboard.png"
-        alt="Hoyaal hotel admin dashboard showing bookings, revenue, available rooms and recent bookings"
+        alt={alt}
         width={1905}
         height={828}
         sizes="(min-width: 1024px) 640px, 100vw"

@@ -1,15 +1,23 @@
 import Link from "next/link";
+import { Reveal } from "@/components/motion/reveal";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
 import { navLinks, siteConfig, socialLinks } from "@/content/site";
+import type { Dictionary } from "@/i18n/dictionaries/en";
 
-export function SiteFooter() {
+type SiteFooterProps = {
+  nav: Dictionary["nav"];
+  tagline: string;
+  t: Dictionary["footer"];
+};
+
+export function SiteFooter({ nav, tagline, t }: SiteFooterProps) {
   const year = new Date().getFullYear();
 
   return (
     <footer className="bg-white">
       <Container>
-        <div className="flex flex-col items-center gap-6 py-10 md:flex-row md:justify-between">
+        <Reveal className="flex flex-col items-center gap-6 py-10 md:flex-row md:justify-between">
           <Logo />
 
           <nav aria-label="Footer">
@@ -21,10 +29,10 @@ export function SiteFooter() {
                     className={
                       i === 0
                         ? "text-sm font-medium text-brand-600"
-                        : "text-sm text-ink/80 transition-colors hover:text-ink"
+                        : "text-sm text-ink/80 transition-colors hover:text-brand-600"
                     }
                   >
-                    {link.label}
+                    {nav[link.id]}
                   </Link>
                 </li>
               ))}
@@ -37,20 +45,20 @@ export function SiteFooter() {
                 <a
                   href={href}
                   aria-label={label}
-                  className="grid size-9 place-items-center rounded-full text-slate-600 transition-colors hover:bg-slate-100 hover:text-ink"
+                  className="grid size-9 place-items-center rounded-full text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-50 hover:text-brand-600"
                 >
                   <Icon className="size-[18px]" />
                 </a>
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
         <div className="flex flex-col items-center justify-between gap-2 border-t border-slate-100 py-6 text-xs text-slate-500 sm:flex-row">
           <p>
-            © {year} {siteConfig.name}. All rights reserved.
+            © {year} {siteConfig.name}. {t.rights}
           </p>
-          <p>{siteConfig.tagline}</p>
+          <p>{tagline}</p>
         </div>
       </Container>
     </footer>

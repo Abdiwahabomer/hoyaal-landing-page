@@ -1,18 +1,21 @@
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { testimonials } from "@/content/site";
+import type { Dictionary } from "@/i18n/dictionaries/en";
+import { Reveal } from "@/components/motion/reveal";
 import { TestimonialCarousel } from "./testimonial-carousel";
 
-export function Testimonials() {
+export function Testimonials({ t }: { t: Dictionary["testimonials"] }) {
   return (
     <section className="bg-white pt-4 pb-20 lg:pb-24">
       <Container>
-        <SectionHeading
-          eyebrow="Loved by Travelers"
-          title={<span className="text-2xl sm:text-3xl">Loved by travelers and businesses alike</span>}
-          description="Thousands of travelers trust Hoyaal for their perfect stays."
-        />
-        <TestimonialCarousel items={testimonials} />
+        <Reveal>
+          <SectionHeading
+            eyebrow={t.eyebrow}
+            title={<span className="text-2xl sm:text-3xl">{t.title}</span>}
+            description={t.description}
+          />
+        </Reveal>
+        <TestimonialCarousel items={t.items} goToSlide={t.goToSlide} />
       </Container>
     </section>
   );
