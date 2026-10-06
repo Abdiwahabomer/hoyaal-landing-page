@@ -3,9 +3,9 @@ import type { Dictionary } from "./en";
 // Somali copy. TODO: have a native Somali speaker review before launch.
 export const so: Dictionary = {
   meta: {
-    title: "Hoyaal — Raadi. Ballanso. Deg.",
+    title: "Hoyaal | Raadi. Ballanso. Deg.",
     description:
-      "Habka ugu fudud ee aad ku ballansan karto hoteello, hoyyo, iyo khibrado safar — dhammaan hal meel.",
+      "Habka ugu fudud ee aad ku ballansan karto hoteello, hoyyo, iyo khibrado safar, dhammaan hal meel.",
   },
   tagline: "Raadi. Ballanso. Deg.",
   nav: {
@@ -79,7 +79,7 @@ export const so: Dictionary = {
     eyebrow: "Khibradda mobilka",
     title: "Khibradda mobilka",
     description:
-      "Abka Hoyaal wuxuu ku siinayaa xakamayn buuxda — raadi, ballanso, maamul, oo sahami dhammaan hal meel.",
+      "Abka Hoyaal wuxuu ku siinayaa xakamayn buuxda: raadi, ballanso, maamul, oo sahami dhammaan hal meel.",
     appStoreLine1: "Kala soo deg",
     playStoreLine1: "Ka hel",
   },
@@ -145,7 +145,7 @@ export const so: Dictionary = {
       {
         question: "Waa imisa khidmaddu?",
         answer:
-          "Ma jirto khidmad bilow ah oo lagu diiwaangeliyo hantidaada. Komishan yar ayaa lagu dabaqaa ballansiyada la xaqiijiyay — la xiriir kooxdayada si aad u ogaato qiimayaasha hadda.",
+          "Ma jirto khidmad bilow ah oo lagu diiwaangeliyo hantidaada. Komishan yar ayaa lagu dabaqaa ballansiyada la xaqiijiyay. La xiriir kooxdayada si aad u ogaato qiimayaasha hadda.",
       },
       {
         question: "Ma bixisaan taageero suuq-geyn?",

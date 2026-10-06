@@ -1,9 +1,9 @@
 // English copy. `so.ts` must provide the same shape (enforced by the `Dictionary` type).
 export const en = {
   meta: {
-    title: "Hoyaal — Find. Book. Stay.",
+    title: "Hoyaal | Find. Book. Stay.",
     description:
-      "The easiest way to book hotels, stays, and travel experiences — all in one place.",
+      "The easiest way to book hotels, stays, and travel experiences, all in one place.",
   },
   tagline: "Find. Book. Stay.",
   nav: {
@@ -78,7 +78,7 @@ export const en = {
     eyebrow: "Mobile Experience",
     title: "Mobile experience",
     description:
-      "The Hoyaal app gives you full control — search, book, manage, and explore all in one place.",
+      "The Hoyaal app gives you full control: search, book, manage, and explore all in one place.",
     appStoreLine1: "Download on the",
     playStoreLine1: "Get it on",
   },
@@ -146,7 +146,7 @@ export const en = {
       {
         question: "What are the fees?",
         answer:
-          "There are no setup fees to list your property. A small commission applies to confirmed bookings — contact our team for current rates.",
+          "There are no setup fees to list your property. A small commission applies to confirmed bookings. Contact our team for current rates.",
       },
       {
         question: "Do you provide marketing support?",
