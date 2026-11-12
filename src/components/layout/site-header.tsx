@@ -42,9 +42,11 @@ type SiteHeaderProps = {
   locale: Locale;
   nav: Dictionary["nav"];
   t: Dictionary["header"];
+  /** Prefix for section anchors; set to "/<locale>" on pages other than home. */
+  homeHref?: string;
 };
 
-export function SiteHeader({ locale, nav, t }: SiteHeaderProps) {
+export function SiteHeader({ locale, nav, t, homeHref = "" }: SiteHeaderProps) {
   const active = useActiveSection(sectionIds);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -65,14 +67,14 @@ export function SiteHeader({ locale, nav, t }: SiteHeaderProps) {
       )}
     >
       <Container className="flex h-18 items-center justify-between gap-6">
-        <Logo preload />
+        <Logo preload homeHref={homeHref} />
 
         <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-9">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <Link
-                  href={link.href}
+                  href={`${homeHref}${link.href}`}
                   aria-current={active === link.id ? "true" : undefined}
                   className={cn(
                     "relative py-2 text-sm font-medium whitespace-nowrap transition-colors",
@@ -93,7 +95,7 @@ export function SiteHeader({ locale, nav, t }: SiteHeaderProps) {
         <div className="flex items-center gap-3">
           <LocaleSwitcher locale={locale} label={t.language} />
           <div className="hidden sm:block">
-            <ButtonLink href="#download" size="sm">
+            <ButtonLink href={`${homeHref}#download`} size="sm">
               {t.cta}
               <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" />
             </ButtonLink>
@@ -121,7 +123,7 @@ export function SiteHeader({ locale, nav, t }: SiteHeaderProps) {
             {navLinks.map((link) => (
               <Link
                 key={link.id}
-                href={link.href}
+                href={`${homeHref}${link.href}`}
                 onClick={() => setMenuOpen(false)}
                 className={cn(
                   "rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
@@ -131,7 +133,7 @@ export function SiteHeader({ locale, nav, t }: SiteHeaderProps) {
                 {nav[link.id]}
               </Link>
             ))}
-            <ButtonLink href="#download" onClick={() => setMenuOpen(false)} className="mt-2">
+            <ButtonLink href={`${homeHref}#download`} onClick={() => setMenuOpen(false)} className="mt-2">
               {t.cta}
               <ArrowRightIcon className="size-4" />
             </ButtonLink>

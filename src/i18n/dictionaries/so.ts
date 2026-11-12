@@ -164,4 +164,11 @@ export const so: Dictionary = {
   footer: {
     rights: "Xuquuqda oo dhan way dhowran tahay.",
   },
+  legal: {
+    privacy: "Siyaasadda Asturnaanta",
+    terms: "Shuruudaha iyo Xaaladaha",
+    backHome: "Ku noqo bogga hore",
+    contents: "Tusmada",
+    languageNote: "Qoraalkan sharciga ah hadda wuxuu ku qoran yahay Ingiriisi oo keliya.",
+  },
 };

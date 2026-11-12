@@ -28,7 +28,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <Faq t={dict.faq} />
         <ContactCta t={dict.contact} />
       </main>
-      <SiteFooter nav={dict.nav} tagline={dict.tagline} t={dict.footer} />
+      <SiteFooter
+        locale={lang}
+        nav={dict.nav}
+        tagline={dict.tagline}
+        t={dict.footer}
+        legal={dict.legal}
+      />
     </>
   );
 }

@@ -165,6 +165,13 @@ export const en = {
   footer: {
     rights: "All rights reserved.",
   },
+  legal: {
+    privacy: "Privacy Policy",
+    terms: "Terms & Conditions",
+    backHome: "Back to home",
+    contents: "Contents",
+    languageNote: "",
+  },
 };
 
 export type Dictionary = typeof en;
